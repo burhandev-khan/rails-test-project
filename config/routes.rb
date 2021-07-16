@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :admin_users, only: %w[#<WebFront:0x00007ffa4cf05750>]
 
-  namespace :api do
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resource :user_bookings, only: :create
+      resources :books, only: :index
+    end
   end
 
   namespace :dashboard do

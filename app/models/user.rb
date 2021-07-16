@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true
+
+  scope :search_by_name, ->(value) { where('MATCH (name) AGAINST (?)', value) }
 end
