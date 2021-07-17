@@ -6,7 +6,7 @@ module Api
       private
 
       def results
-        @results ||= BookQueryObject.new(Book.all, filter_params).results
+        @results ||= BookQueryObject.new(Book.includes(:author).all, filter_params).results
       end
 
       def filter_params
